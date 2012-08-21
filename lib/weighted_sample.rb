@@ -3,10 +3,11 @@ module Enumerable
     return nil if self.empty?
 
     weights = self.map(&block)
-    raise ArgumentError, 'weight should Integer' unless weights.all? &Integer.method(:===)
-    raise ArgumentError, 'weight should positive' unless weights.all?{|x|x > 0}
+    raise ArgumentError, 'Weight should Integer' unless weights.all? &Integer.method(:===)
 
     total_weight = weights.reduce(:+)
+    raise ArgumentError, 'Sum of weights should > 0' unless total_weight > 0
+
     r = rand(total_weight)
 
     cumlative_weight = 0

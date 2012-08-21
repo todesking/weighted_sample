@@ -7,6 +7,7 @@ def samples(n, &block)
   }
 end
 
+# IDentity function
 ID = ->(x){x}
 
 describe 'Enumerable#weighted_sample_by' do
@@ -44,10 +45,19 @@ describe 'Enumerable#weighted_sample_by' do
     end
   end
 
-  describe 'weight is zero' do
-    subject { [0, 1] }
+  describe 'weight contains zero' do
+    subject { [0, 1, 0, 0, 1] }
+    it 'returns non-zero weighted element' do
+      10.times do
+        subject.weighted_sample_by(&ID).should == 1
+      end
+    end
+  end
+
+  describe 'weight is all zero' do
+    subject { [0, 0] }
     it 'raises ArgumentError' do
-      expect { subject.weighted_sample_by(&ID)}.to raise_error(ArgumentError)
+      expect { subject.weighted_sample_by(&ID) }.to raise_error(ArgumentError)
     end
   end
 end
