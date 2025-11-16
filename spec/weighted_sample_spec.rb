@@ -1,4 +1,4 @@
-load File.join(File.dirname(__FILE__), '..', 'lib', 'weighted_sample.rb')
+require_relative 'spec_helper'
 
 def samples(n, &block)
   n.times.each_with_object(Hash.new{|_|0}) {|_,h|
