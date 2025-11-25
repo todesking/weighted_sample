@@ -13,21 +13,21 @@ ID = ->(x){x}
 describe 'Enumerable#weighted_sample_by' do
   subject { [1, 9, 90] }
   it 'returns its content value' do
-    subject.weighted_sample_by(&ID).should be_a(Integer)
-    subject.should be_include(subject.weighted_sample_by(&ID))
+    expect(subject.weighted_sample_by(&ID)).to be_a(Integer)
+    expect(subject).to include(subject.weighted_sample_by(&ID))
   end
 
   it 'returns value with respect for its weight' do
     s = samples(10000) { subject.weighted_sample_by(&ID) }
-    s[90].should be_within(5000).of(9000)
-    s[9].should be_within(500).of(900)
-    s[1].should be_within(50).of(100)
+    expect(s[90]).to be_within(5000).of(9000)
+    expect(s[9]).to be_within(500).of(900)
+    expect(s[1]).to be_within(50).of(100)
   end
 
   describe 'the Enumerable is empty' do
     subject { [] }
     it 'returns nil' do
-      subject.weighted_sample_by(&ID).should be_nil
+      expect(subject.weighted_sample_by(&ID)).to be_nil
     end
   end
 
@@ -49,7 +49,7 @@ describe 'Enumerable#weighted_sample_by' do
     subject { [0, 1, 0, 0, 1] }
     it 'returns non-zero weighted element' do
       10.times do
-        subject.weighted_sample_by(&ID).should == 1
+        expect(subject.weighted_sample_by(&ID)).to eq 1
       end
     end
   end
