@@ -18,8 +18,10 @@ Or install it yourself as:
 
 ## Usage
 
+```ruby
 [1, 9].weighted_sample_by {|x| x}
-=> 9(90%) or 1(10%)
+#=> 9(90%) or 1(10%)
+```
 
 ### Restrictions
 
