@@ -1,6 +1,6 @@
 # weighted_sample
 
-This gem add Enumerable#weighted_sample_by mehtod.
+This gem add Enumerable#weighted_sample_by method.
 
 ## Installation
 
